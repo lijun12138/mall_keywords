@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.mapper.ImportDataMapper">
+	<select id="select_sku" parameterType="int" resultMap="select_sku_map">
+		select
+		sku.id sku_id,spu.id spu_id,tm.id tm_id,sku.*,spu.*,tm.*
+		from
+		t_mall_sku sku ,t_mall_product spu ,t_mall_trade_mark tm
+		where
+		sku.shp_id=spu.id
+		and spu.pp_id=tm.Id
+		and spu.flbh2=#{class_2_id}
+	</select>
+
+	<resultMap type="com.atguigu.bean.OBJECT_T_MALL_SKU_KEYWORDS" id="select_sku_map"
+		autoMapping="true">
+		<result column="sku_id" property="id" />
+	</resultMap>
+
+</mapper>
